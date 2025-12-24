@@ -12,7 +12,7 @@
   <Identity
     Name="212141b6-b89a-4d3b-afbe-fae5b1493b32"
     Publisher="CN=elNino0916"
-    Version="0.0.1.0" />
+    Version="0.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="212141b6-b89a-4d3b-afbe-fae5b1493b32" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
