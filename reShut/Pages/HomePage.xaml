@@ -8,119 +8,144 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid Padding="40" RowSpacing="24">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Header -->
-        <StackPanel Grid.Row="0" Spacing="8">
-            <TextBlock Text="Power Control" Style="{StaticResource TitleLargeTextBlockStyle}"/>
-            <TextBlock Text="Manage your system's power state" 
-                       Style="{StaticResource BodyTextBlockStyle}" 
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-        </StackPanel>
-
-        <!-- Power Options Grid -->
-        <Grid Grid.Row="1" ColumnSpacing="16" RowSpacing="16">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="40" RowSpacing="28" MinWidth="400">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Shutdown Card -->
-            <Border Grid.Column="0" Grid.Row="0"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="24">
-                <StackPanel Spacing="16">
-                    <FontIcon Glyph="&#xE7E8;" FontSize="48" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
-                    <TextBlock Text="Shutdown" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                    <TextBlock Text="Turn off your computer completely" 
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                               TextWrapping="Wrap"/>
-                    <Button x:Name="ShutdownBtn" 
-                            Content="Shutdown" 
-                            Style="{StaticResource AccentButtonStyle}"
-                            HorizontalAlignment="Stretch"
-                            Click="ShutdownButton_Click"/>
-                </StackPanel>
-            </Border>
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Spacing="4">
+                <TextBlock Text="Power Control" Style="{StaticResource TitleLargeTextBlockStyle}" FontWeight="SemiBold"/>
+                <TextBlock Text="Manage your system's power state" 
+                           Style="{StaticResource BodyTextBlockStyle}" 
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Opacity="0.8"/>
+            </StackPanel>
 
-            <!-- Restart Card -->
-            <Border Grid.Column="1" Grid.Row="0"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="24">
-                <StackPanel Spacing="16">
-                    <FontIcon Glyph="&#xE72C;" FontSize="48" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
-                    <TextBlock Text="Restart" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                    <TextBlock Text="Restart your computer" 
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                               TextWrapping="Wrap"/>
-                    <Button x:Name="RestartBtn" 
-                            Content="Restart" 
-                            Style="{StaticResource AccentButtonStyle}"
-                            HorizontalAlignment="Stretch"
-                            Click="RestartButton_Click"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Sign Out Card -->
-            <Border Grid.Column="2" Grid.Row="0"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="24">
-                <StackPanel Spacing="16">
-                    <FontIcon Glyph="&#xE77B;" FontSize="48" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
-                    <TextBlock Text="Sign Out" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                    <TextBlock Text="Log off from your account" 
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                               TextWrapping="Wrap"/>
-                    <Button x:Name="LogoffBtn" 
-                            Content="Sign Out" 
-                            HorizontalAlignment="Stretch"
-                            Click="LogoffButton_Click"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Admin Status -->
-            <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16">
-                <Grid>
+            <!-- Power Options -->
+            <StackPanel Grid.Row="1" Spacing="20">
+                <!-- Cards Row -->
+                <Grid ColumnSpacing="16" RowSpacing="16">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MinWidth="180"/>
+                        <ColumnDefinition Width="*" MinWidth="180"/>
+                        <ColumnDefinition Width="*" MinWidth="180"/>
                     </Grid.ColumnDefinitions>
-                    <FontIcon x:Name="AdminIcon" Grid.Column="0" Glyph="&#xE7EF;" FontSize="20" 
-                              Margin="0,0,12,0" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock x:Name="AdminText" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                        <TextBlock x:Name="AdminDesc" 
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                    </StackPanel>
+
+                    <!-- Shutdown Card -->
+                    <Border Grid.Column="0" Style="{StaticResource FeatureCardStyle}">
+                        <StackPanel Spacing="16">
+                            <Border Width="56" Height="56" CornerRadius="28" 
+                                    HorizontalAlignment="Left"
+                                    Background="{ThemeResource AccentFillColorDefaultBrush}">
+                                <FontIcon Glyph="&#xE7E8;" FontSize="24" Foreground="White" 
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Shutdown" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold"/>
+                                <TextBlock Text="Turn off your computer completely." 
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           TextWrapping="Wrap"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                            <Button x:Name="ShutdownBtn" 
+                                    Content="Shutdown" 
+                                    Style="{StaticResource LargeActionButtonStyle}"
+                                    Click="ShutdownButton_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Restart Card -->
+                    <Border Grid.Column="1" Style="{StaticResource FeatureCardStyle}">
+                        <StackPanel Spacing="16">
+                            <Border Width="56" Height="56" CornerRadius="28" 
+                                    HorizontalAlignment="Left"
+                                    Background="{ThemeResource AccentFillColorDefaultBrush}">
+                                <FontIcon Glyph="&#xE72C;" FontSize="24" Foreground="White"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Restart" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold"/>
+                                <TextBlock Text="Restart your computer." 
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           TextWrapping="Wrap"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                            <Button x:Name="RestartBtn" 
+                                    Content="Restart" 
+                                    Style="{StaticResource LargeActionButtonStyle}"
+                                    Click="RestartButton_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Sign Out Card -->
+                    <Border Grid.Column="2" Style="{StaticResource FeatureCardStyle}">
+                        <StackPanel Spacing="16">
+                            <Border Width="56" Height="56" CornerRadius="28" 
+                                    HorizontalAlignment="Left"
+                                    Background="{ThemeResource SubtleFillColorSecondaryBrush}">
+                                <FontIcon Glyph="&#xE77B;" FontSize="24" 
+                                          Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Sign Out" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold"/>
+                                <TextBlock Text="Log off from your account." 
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           TextWrapping="Wrap"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                            <Button x:Name="LogoffBtn" 
+                                    Content="Sign Out" 
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Click="LogoffButton_Click"/>
+                        </StackPanel>
+                    </Border>
                 </Grid>
-            </Border>
+
+                <!-- Admin Status Card -->
+                <Border Style="{StaticResource ElevatedCardStyle}" Padding="20">
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Status Icon -->
+                        <Border x:Name="AdminIconBorder" Grid.Column="0" 
+                                Width="44" Height="44" CornerRadius="22"
+                                VerticalAlignment="Center">
+                            <FontIcon x:Name="AdminIcon" Glyph="&#xE7EF;" FontSize="20" 
+                                      Foreground="White"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        
+                        <!-- Status Text -->
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                            <TextBlock x:Name="AdminText" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                            <TextBlock x:Name="AdminDesc" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       Opacity="0.8"/>
+                        </StackPanel>
+                        
+                        <!-- Status Badge -->
+                        <Border x:Name="StatusBadge" Grid.Column="2" 
+                                Style="{StaticResource StatusBadgeStyle}"
+                                VerticalAlignment="Center">
+                            <TextBlock x:Name="StatusBadgeText" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       FontWeight="SemiBold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

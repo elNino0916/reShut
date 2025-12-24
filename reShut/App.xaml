@@ -8,9 +8,99 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
+            
+            <!-- Override Tooltip Style for modern look -->
+            <Style TargetType="ToolTip">
+                <Setter Property="Background" Value="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"/>
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource SurfaceStrokeColorDefaultBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="12,8,12,8"/>
+                <Setter Property="CornerRadius" Value="8"/>
+            </Style>
+            
+            <!-- Modern Card Style -->
+            <Style x:Key="ModernCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="20"/>
+            </Style>
+            
+            <!-- Elevated Card Style with shadow effect simulation -->
+            <Style x:Key="ElevatedCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorSecondaryBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="Padding" Value="24"/>
+            </Style>
+            
+            <!-- Feature Card Style for home page -->
+            <Style x:Key="FeatureCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorSecondaryBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="Padding" Value="28"/>
+            </Style>
+            
+            <!-- Modern Pill Button Style -->
+            <Style x:Key="PillButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="16,8,16,8"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+            
+            <!-- Accent Pill Button Style -->
+            <Style x:Key="AccentPillButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="20,10,20,10"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+            
+            <!-- Large Action Button Style -->
+            <Style x:Key="LargeActionButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="24,14,24,14"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            
+            <!-- Secondary Action Button Style -->
+            <Style x:Key="SecondaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="24,14,24,14"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            
+            <!-- Subtle Button Style -->
+            <Style x:Key="SubtleButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Padding" Value="12,8,12,8"/>
+            </Style>
+            
+            <!-- Icon Circle Style -->
+            <Style x:Key="IconCircleStyle" TargetType="Border">
+                <Setter Property="Width" Value="64"/>
+                <Setter Property="Height" Value="64"/>
+                <Setter Property="CornerRadius" Value="32"/>
+                <Setter Property="Background" Value="{ThemeResource AccentFillColorDefaultBrush}"/>
+            </Style>
+            
+            <!-- Status Badge Style -->
+            <Style x:Key="StatusBadgeStyle" TargetType="Border">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="Padding" Value="12,6,12,6"/>
+                <Setter Property="Background" Value="{ThemeResource SubtleFillColorSecondaryBrush}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

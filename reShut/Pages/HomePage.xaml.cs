@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Media;
 using reShut.Helpers;
 using reShut.Services;
 using System;
+using Windows.UI;
 
 namespace reShut.Pages;
 
@@ -22,13 +23,19 @@ public sealed partial class HomePage : Page
         {
             AdminText.Text = "Running as Administrator";
             AdminDesc.Text = "All power operations are available.";
-            AdminIcon.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+            AdminIconBorder.Background = new SolidColorBrush(Microsoft.UI.Colors.ForestGreen);
+            StatusBadge.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(40, 34, 139, 34));
+            StatusBadgeText.Text = "Elevated";
+            StatusBadgeText.Foreground = new SolidColorBrush(Microsoft.UI.Colors.ForestGreen);
         }
         else
         {
-            AdminText.Text = "Not running as Administrator";
+            AdminText.Text = "Standard User Mode";
             AdminDesc.Text = "Some operations may require elevated privileges.";
-            AdminIcon.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Orange);
+            AdminIconBorder.Background = new SolidColorBrush(Microsoft.UI.Colors.DarkOrange);
+            StatusBadge.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(40, 255, 140, 0));
+            StatusBadgeText.Text = "Limited";
+            StatusBadgeText.Foreground = new SolidColorBrush(Microsoft.UI.Colors.DarkOrange);
         }
     }
 

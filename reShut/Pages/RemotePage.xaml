@@ -8,55 +8,72 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid Padding="40" RowSpacing="24">
+    <Grid Padding="40" RowSpacing="28">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <StackPanel Grid.Row="0" Spacing="8">
-            <TextBlock Text="Remote Control" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+        <StackPanel Grid.Row="0" Spacing="4">
+            <TextBlock Text="Remote Control" Style="{StaticResource TitleLargeTextBlockStyle}" FontWeight="SemiBold"/>
             <TextBlock Text="Manage power on remote Windows computers in your network" 
                        Style="{StaticResource BodyTextBlockStyle}" 
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                       Opacity="0.8"/>
         </StackPanel>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="16" MaxWidth="600" HorizontalAlignment="Left">
+            <StackPanel Spacing="20" MaxWidth="640" HorizontalAlignment="Left">
                 
                 <!-- Target Computer -->
-                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="24">
+                <Border Style="{StaticResource ElevatedCardStyle}">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="Target Computer" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Border Width="40" Height="40" CornerRadius="20" 
+                                    Background="{ThemeResource AccentFillColorDefaultBrush}">
+                                <FontIcon Glyph="&#xE703;" FontSize="18" Foreground="White"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Target Computer" Style="{StaticResource SubtitleTextBlockStyle}" 
+                                       VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        </StackPanel>
                         <TextBox x:Name="HostBox" 
                                  Header="Hostname or IP Address"
-                                 PlaceholderText="e.g., 192.168.1.100 or COMPUTER-NAME"/>
+                                 PlaceholderText="e.g., 192.168.1.100 or COMPUTER-NAME"
+                                 Margin="0,8,0,0"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Credentials (Optional) -->
-                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="24">
+                <Border Style="{StaticResource ElevatedCardStyle}">
                     <StackPanel Spacing="16">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="Credentials" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <TextBlock Text="(Optional)" 
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                       VerticalAlignment="Bottom"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <Border Width="40" Height="40" CornerRadius="20" 
+                                        Background="{ThemeResource SubtleFillColorSecondaryBrush}">
+                                    <FontIcon Glyph="&#xE8D7;" FontSize="18" 
+                                              Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Credentials" Style="{StaticResource SubtitleTextBlockStyle}" 
+                                           VerticalAlignment="Center" FontWeight="SemiBold"/>
+                            </StackPanel>
+                            <Border Grid.Column="2" Style="{StaticResource StatusBadgeStyle}" VerticalAlignment="Center">
+                                <TextBlock Text="Optional" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            </Border>
+                        </Grid>
                         
                         <TextBlock Text="Leave empty to use current user credentials" 
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   Opacity="0.8"/>
                         
                         <TextBox x:Name="UserBox" 
                                  Header="Username"
@@ -69,14 +86,18 @@
                 </Border>
 
                 <!-- Action Selection -->
-                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="24">
+                <Border Style="{StaticResource ElevatedCardStyle}">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="Action" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                        <RadioButtons x:Name="ActionButtons" SelectedIndex="0">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Border Width="40" Height="40" CornerRadius="20" 
+                                    Background="{ThemeResource AccentFillColorDefaultBrush}">
+                                <FontIcon Glyph="&#xE7E8;" FontSize="18" Foreground="White"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Action" Style="{StaticResource SubtitleTextBlockStyle}" 
+                                       VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <RadioButtons x:Name="ActionButtons" SelectedIndex="0" Margin="0,8,0,0">
                             <RadioButton Content="Shutdown" Tag="shutdown"/>
                             <RadioButton Content="Restart" Tag="restart"/>
                         </RadioButtons>
@@ -85,22 +106,28 @@
 
                 <!-- Execute Button -->
                 <Button x:Name="ExecButton" 
-                        Content="Execute Remote Action" 
-                        Style="{StaticResource AccentButtonStyle}"
-                        HorizontalAlignment="Stretch"
-                        Click="ExecuteButton_Click"/>
+                        Style="{StaticResource LargeActionButtonStyle}"
+                        Margin="0,8,0,0"
+                        Click="ExecuteButton_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <FontIcon Glyph="&#xE768;" FontSize="16"/>
+                        <TextBlock Text="Execute Remote Action"/>
+                    </StackPanel>
+                </Button>
 
                 <!-- Status -->
                 <InfoBar x:Name="StatusBar"
                          IsOpen="False"
-                         IsClosable="True"/>
+                         IsClosable="True"
+                         CornerRadius="8"/>
 
                 <!-- Warning -->
                 <InfoBar Title="Important"
                          Message="Remote power management requires proper network configuration and WMI access on the target computer. Make sure the target computer allows remote management."
                          Severity="Warning"
                          IsOpen="True"
-                         IsClosable="False"/>
+                         IsClosable="False"
+                         CornerRadius="8"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
