@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="reShut.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Transparent">
+
+    <Grid Padding="40" RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Spacing="8">
+            <TextBlock Text="Settings" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+            <TextBlock Text="Configure reShut preferences" 
+                       Style="{StaticResource BodyTextBlockStyle}" 
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="4" MaxWidth="800" HorizontalAlignment="Left">
+                
+                <!-- Appearance -->
+                <TextBlock Text="Appearance" 
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Margin="0,0,0,8"/>
+                
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="App Theme" Style="{StaticResource BodyTextBlockStyle}"/>
+                            <TextBlock Text="Select which app theme to display" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ComboBox x:Name="ThemeSelector" 
+                                  Grid.Column="1" 
+                                  Width="150"
+                                  SelectionChanged="ThemeComboBox_SelectionChanged">
+                            <ComboBoxItem Content="System Default" Tag="Default"/>
+                            <ComboBoxItem Content="Light" Tag="Light"/>
+                            <ComboBoxItem Content="Dark" Tag="Dark"/>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+
+                <!-- Behavior -->
+                <TextBlock Text="Behavior" 
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Margin="0,24,0,8"/>
+
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Confirmation Dialogs" Style="{StaticResource BodyTextBlockStyle}"/>
+                            <TextBlock Text="Show confirmation before executing power actions" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ToggleSwitch x:Name="ConfirmToggle" 
+                                      Grid.Column="1" 
+                                      IsOn="True"
+                                      OnContent="On"
+                                      OffContent="Off"/>
+                    </Grid>
+                </Border>
+
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Force Close Applications" Style="{StaticResource BodyTextBlockStyle}"/>
+                            <TextBlock Text="Force close applications on shutdown/restart" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ToggleSwitch x:Name="ForceToggle" 
+                                      Grid.Column="1" 
+                                      IsOn="True"
+                                      OnContent="On"
+                                      OffContent="Off"/>
+                    </Grid>
+                </Border>
+
+                <!-- About -->
+                <TextBlock Text="About" 
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Margin="0,24,0,8"/>
+
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="24">
+                    <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <Image Source="/Assets/StoreLogo.png" Width="64" Height="64"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="reShut" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                <TextBlock Text="Version 1.0.0" 
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Text="An easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on Windows computers." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   TextWrapping="Wrap"/>
+                        <HyperlinkButton Content="View on GitHub" NavigateUri="https://github.com/elNino0916/reShut"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

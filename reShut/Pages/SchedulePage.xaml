@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="reShut.Pages.SchedulePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Transparent">
+
+    <Grid Padding="40" RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Spacing="8">
+            <TextBlock Text="Schedule" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+            <TextBlock Text="Schedule a shutdown or restart at a specific time" 
+                       Style="{StaticResource BodyTextBlockStyle}" 
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="16" MaxWidth="600" HorizontalAlignment="Left">
+                
+                <!-- Action Selection -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Action" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <RadioButtons x:Name="ActionButtons" SelectedIndex="0">
+                            <RadioButton Content="Shutdown" Tag="shutdown"/>
+                            <RadioButton Content="Restart" Tag="restart"/>
+                        </RadioButtons>
+                    </StackPanel>
+                </Border>
+
+                <!-- Time Selection -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Delay" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <NumberBox x:Name="HoursInput" 
+                                       Header="Hours" 
+                                       Value="0" 
+                                       Minimum="0" 
+                                       Maximum="24"
+                                       SpinButtonPlacementMode="Inline"/>
+                            
+                            <NumberBox x:Name="MinutesInput" 
+                                       Grid.Column="1"
+                                       Header="Minutes" 
+                                       Value="30" 
+                                       Minimum="0" 
+                                       Maximum="59"
+                                       SpinButtonPlacementMode="Inline"/>
+                        </Grid>
+
+                        <TextBlock x:Name="SummaryText" 
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Quick Presets -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Quick Presets" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="15 min" Click="Preset15_Click"/>
+                            <Button Content="30 min" Click="Preset30_Click"/>
+                            <Button Content="1 hour" Click="Preset60_Click"/>
+                            <Button Content="2 hours" Click="Preset120_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Action Buttons -->
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button x:Name="ScheduleBtn" 
+                            Content="Schedule" 
+                            Style="{StaticResource AccentButtonStyle}"
+                            HorizontalAlignment="Stretch"
+                            Click="ScheduleButton_Click"/>
+                    
+                    <Button x:Name="CancelBtn" 
+                            Grid.Column="1"
+                            Content="Cancel Scheduled" 
+                            HorizontalAlignment="Stretch"
+                            Click="CancelButton_Click"/>
+                </Grid>
+
+                <!-- Status -->
+                <InfoBar x:Name="StatusBar"
+                         IsOpen="False"
+                         IsClosable="True"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

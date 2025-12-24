@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConfirmationText" xml:space="preserve">
+    <value>Are you sure? Press any key to continue.</value>
+  </data>
+  <data name="UpdatesDisabled" xml:space="preserve">
+    <value>Update Search is disabled.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="Shutdown" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Reboot" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule...</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="PressAnyKeyToGoBack" xml:space="preserve">
+    <value>↵ Press any key to go back.</value>
+  </data>
+  <data name="UpdateDLStarted" xml:space="preserve">
+    <value>Download started, Installer will open in a few seconds...</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Invalid input.</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Logoff</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>reShut CLI is up to date!</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Reset all settings</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="MenuAndText" xml:space="preserve">
+    <value>Menu and Texts</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About reShut CLI</value>
+  </data>
+  <data name="DoubleConfirmOn" xml:space="preserve">
+    <value>Double-Confirmation is enabled.</value>
+  </data>
+  <data name="DoubleConfirmOff" xml:space="preserve">
+    <value>Double-Confirmation is disabled.</value>
+  </data>
+  <data name="DoubleConfiguration" xml:space="preserve">
+    <value>Toggle Double-Confirmation</value>
+  </data>
+  <data name="RegUpdate" xml:space="preserve">
+    <value>Updating registry...</value>
+  </data>
+  <data name="ConsoleTitle" xml:space="preserve">
+    <value>reShut CLI </value>
+  </data>
+  <data name="LicenseText" xml:space="preserve">
+    <value>The license is available at: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en</value>
+  </data>
+  <data name="PreRelease" xml:space="preserve">
+    <value>Pre-Release </value>
+  </data>
+  <data name="CopyrightText" xml:space="preserve">
+    <value>Copyright © 2023-2025 elNino0916 and contributors.</value>
+  </data>
+  <data name="UpdateCheckFailed" xml:space="preserve">
+    <value>Failed to check for updates. Check your network connection and try again.</value>
+  </data>
+  <data name="UpdateSearchDisabled" xml:space="preserve">
+    <value>Update Search is disabled.</value>
+  </data>
+  <data name="UpdaterTitle" xml:space="preserve">
+    <value>reShut CLI Updater</value>
+  </data>
+  <data name="Schedule_PromptAction" xml:space="preserve">
+    <value>What would you like to schedule?</value>
+  </data>
+  <data name="Schedule_SelectOption" xml:space="preserve">
+    <value>Select an option:</value>
+  </data>
+  <data name="Schedule_ShutdownOption" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Schedule_RebootOption" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="Schedule_Cancel" xml:space="preserve">
+    <value>Cancel schedule</value>
+  </data>
+  <data name="Schedule_ActionCancelled" xml:space="preserve">
+    <value>Action has been cancelled.</value>
+  </data>
+  <data name="Schedule_CurrentTime" xml:space="preserve">
+    <value>Current time:</value>
+  </data>
+  <data name="Schedule_PromptWhen" xml:space="preserve">
+    <value>When should the action be executed?</value>
+  </data>
+  <data name="Schedule_EnterSeconds" xml:space="preserve">
+    <value>Enter the time in minutes.</value>
+  </data>
+  <data name="Schedule_InputPrompt" xml:space="preserve">
+    <value>Input:</value>
+  </data>
+  <data name="Schedule_ErrorNumberInput" xml:space="preserve">
+    <value>Error: Input must be a valid number.</value>
+  </data>
+  <data name="Schedule_ConfirmActionSeconds" xml:space="preserve">
+    <value>You want to schedule a {0} in {1} minute(s). Is that correct?</value>
+  </data>
+  <data name="Schedule_TimeBreakdown" xml:space="preserve">
+    <value>({0}hrs)</value>
+  </data>
+  <data name="Schedule_ConfirmYes" xml:space="preserve">
+    <value>Yes, schedule {0}</value>
+  </data>
+  <data name="Schedule_ConfirmNoReenter" xml:space="preserve">
+    <value>No, go back and re-enter information.</value>
+  </data>
+  <data name="BackToMainMenu" xml:space="preserve">
+    <value>Back to main menu</value>
+  </data>
+  <data name="Schedule_ActionScheduled" xml:space="preserve">
+    <value>Action has been scheduled!</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>An error occurred.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="RegistryVersion" xml:space="preserve">
+    <value>Registry Version</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>An update for reShut CLI is available. Press U to update.</value>
+  </data>
+  <data name="HelpTranslate" xml:space="preserve">
+    <value>Help translate reShut CLI to your language!</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Select the language you would like to use.</value>
+  </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>Do you really want to reset reShut CLI? This cannot be undone!</value>
+  </data>
+  <data name="ResetProg" xml:space="preserve">
+    <value>Reset in progress. Do not close reShut CLI...</value>
+  </data>
+  <data name="UpdateSettings_Title" xml:space="preserve">
+    <value>Update Settings</value>
+  </data>
+  <data name="UpdateSettings_ToggleUpdateSearch" xml:space="preserve">
+    <value>Toggle Update Search</value>
+  </data>
+  <data name="UpdateSettings_ToggleAutoUpdate" xml:space="preserve">
+    <value>Toggle Auto Update on Startup</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchEnabled" xml:space="preserve">
+    <value>Update Search is enabled.</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchDisabled" xml:space="preserve">
+    <value>Update Search is disabled.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateEnabled" xml:space="preserve">
+    <value>Auto Update is enabled.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateDisabled" xml:space="preserve">
+    <value>Auto Update is disabled.</value>
+  </data>
+  <data name="SelectTheme" xml:space="preserve">
+    <value>Select a theme to personalize your experience.</value>
+  </data>
+  <data name="NeedRestart" xml:space="preserve">
+    <value>reShut CLI needs to restart.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
+    <value>↵ Press any key to restart reShut CLI.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
+    <value>↵ Press any key to return to Settings.</value>
+  </data>
+  <data name="ErrorHandler_BeingImproved" xml:space="preserve">
+    <value>This interface is currently being improved. Please report any bugs on GitHub.</value>
+  </data>
+</root>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "reShut (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "reShut (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
