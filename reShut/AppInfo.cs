@@ -10,7 +10,7 @@ public static class AppInfo
     /// The current version of the application.
     /// Update this value to change the version displayed everywhere in the app.
     /// </summary>
-    public const string Version = "0.0.1";
+    public const string Version = "0.0.2";
 
     /// <summary>
     /// The application name.

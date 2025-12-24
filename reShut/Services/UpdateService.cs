@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace reShut.Services;
@@ -44,7 +45,7 @@ public static class UpdateService
             }
 
             var json = await response.Content.ReadAsStringAsync();
-            var release = JsonSerializer.Deserialize<GitHubRelease>(json);
+            var release = JsonSerializer.Deserialize(json, GitHubReleaseContext.Default.GitHubRelease);
 
             if (release?.tag_name == null)
             {
@@ -115,12 +116,25 @@ public static class UpdateService
             return false;
         }
     }
+}
 
-    private class GitHubRelease
-    {
-#pragma warning disable IDE1006 // Naming Styles - matches GitHub API
-        public string? tag_name { get; set; }
-        public string? html_url { get; set; }
-#pragma warning restore IDE1006
-    }
+/// <summary>
+/// GitHub release information from the API.
+/// </summary>
+public class GitHubRelease
+{
+    [JsonPropertyName("tag_name")]
+    public string? tag_name { get; set; }
+
+    [JsonPropertyName("html_url")]
+    public string? html_url { get; set; }
+}
+
+/// <summary>
+/// Source-generated JSON serialization context for AOT compatibility.
+/// </summary>
+[JsonSerializable(typeof(GitHubRelease))]
+[JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.SnakeCaseLower)]
+internal partial class GitHubReleaseContext : JsonSerializerContext
+{
 }
