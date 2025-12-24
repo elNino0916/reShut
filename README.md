@@ -1,4 +1,4 @@
-<img width="188" height="87" alt="reShut logo" src="https://github.com/user-attachments/assets/e2eb5c8b-8c9b-442c-ae7f-feb561e91fd2" />
+<img width="239" height="108" alt="image" src="https://github.com/user-attachments/assets/7a291ced-f7e0-4c28-a28a-cb0a12d33029" />
 
 **reShut** is an easy-to-use Windows application designed to simplify and centralize the management of **remote shutdowns and reboots** across computers in your local network.
 
@@ -42,7 +42,7 @@ Wait for it to initialize and press Run. Try to install WinUI3 in VS Installer i
 ---
 ## Screenshot
 
-<img width="1071" height="670" alt="reShut application screenshot" src="https://github.com/user-attachments/assets/7600811b-f0c2-472d-9d1e-a272fc91156b" />
+<img width="1071" height="692" alt="image" src="https://github.com/user-attachments/assets/a074c723-85c3-4ecf-810a-60336bf0378b" />
 
 ---
 
