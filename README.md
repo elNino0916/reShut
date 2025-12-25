@@ -1,4 +1,4 @@
-<img width="239" height="108" alt="image" src="https://github.com/user-attachments/assets/7a291ced-f7e0-4c28-a28a-cb0a12d33029" />
+<img width="230" height="157" alt="image" src="https://github.com/user-attachments/assets/c0d79893-ba3a-4e72-9a98-225ead7b37e6" />
 
 **reShut** is an easy-to-use Windows application designed to simplify and centralize the management of **remote shutdowns and reboots** across computers in your local network.
 
@@ -42,7 +42,7 @@ Wait for it to initialize and press Run. Try to install WinUI3 in VS Installer i
 ---
 ## Screenshot
 
-<img width="1071" height="692" alt="image" src="https://github.com/user-attachments/assets/a074c723-85c3-4ecf-810a-60336bf0378b" />
+<img width="1074" height="690" alt="image" src="https://github.com/user-attachments/assets/d872249d-7419-49a7-97e3-4c496d09c85e" />
 
 ---
 
@@ -51,8 +51,6 @@ Wait for it to initialize and press Run. Try to install WinUI3 in VS Installer i
 - Improved UI/UX
 - More CLI features exposed in the GUI
 - Better error handling and feedback
-- Configuration management
-- Packaged MSIX bundle
 
 ---
 
