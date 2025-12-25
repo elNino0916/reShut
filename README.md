@@ -38,6 +38,7 @@ This project is also a **learning exercise**:
 ## Build instructions
 To test the current version, clone the repository and open it with the **latest** version of Visual Studio (preferably 2026).
 Wait for it to initialize and press Run. Try to install WinUI3 in VS Installer if issues occur.
+Alternatively, download the latest [Release](https://github.com/elNino0916/reShut/releases/latest) and certificate. Install the certificate and then run the msixbundle.
 
 ---
 ## Screenshot
