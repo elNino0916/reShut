@@ -8,199 +8,274 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid Padding="40" RowSpacing="28">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer>
+        <StackPanel Padding="56,40,56,40" Spacing="32">
+            
+            <!-- Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Settings" 
+                           Style="{StaticResource TitleLargeTextBlockStyle}" 
+                           FontWeight="SemiBold"
+                           FontSize="32"/>
+                <TextBlock Text="Customize your reShut experience" 
+                           Style="{StaticResource BodyTextBlockStyle}" 
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
 
-        <!-- Header -->
-        <StackPanel Grid.Row="0" Spacing="4">
-            <TextBlock Text="Settings" Style="{StaticResource TitleLargeTextBlockStyle}" FontWeight="SemiBold"/>
-            <TextBlock Text="Configure reShut preferences" 
-                       Style="{StaticResource BodyTextBlockStyle}" 
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                       Opacity="0.8"/>
-        </StackPanel>
+            <!-- Settings Content -->
+            <Grid ColumnSpacing="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MaxWidth="600"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="8" MaxWidth="800" HorizontalAlignment="Left">
-                
-                <!-- Appearance Section -->
-                <TextBlock Text="Appearance" 
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Margin="0,0,0,12"
-                           Opacity="0.7"/>
-                
-                <Border Style="{StaticResource ElevatedCardStyle}" Padding="20">
-                    <Grid ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                <!-- Left Column - Settings -->
+                <StackPanel Grid.Column="0" Spacing="24">
+                    
+                    <!-- Appearance Section -->
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="APPEARANCE" 
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   FontWeight="SemiBold"
+                                   CharacterSpacing="60"/>
                         
-                        <Border Width="44" Height="44" CornerRadius="22" 
-                                Background="{ThemeResource SubtleFillColorSecondaryBrush}"
-                                VerticalAlignment="Center">
-                            <FontIcon Glyph="&#xE771;" FontSize="20" 
-                                      Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
-                            <TextBlock Text="App Theme" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                            <TextBlock Text="Select which app theme to display" 
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                       Opacity="0.8"/>
-                        </StackPanel>
-                        
-                        <ComboBox x:Name="ThemeSelector" 
-                                  Grid.Column="2" 
-                                  Width="160"
-                                  VerticalAlignment="Center"
-                                  SelectionChanged="ThemeComboBox_SelectionChanged">
-                            <ComboBoxItem Content="System Default" Tag="Default"/>
-                            <ComboBoxItem Content="Light" Tag="Light"/>
-                            <ComboBoxItem Content="Dark" Tag="Dark"/>
-                        </ComboBox>
-                    </Grid>
-                </Border>
-
-                <!-- Behavior Section -->
-                <TextBlock Text="Behavior" 
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Margin="0,28,0,12"
-                           Opacity="0.7"/>
-
-                <Border Style="{StaticResource ElevatedCardStyle}" Padding="20">
-                    <Grid ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <Border Width="44" Height="44" CornerRadius="22" 
-                                Background="{ThemeResource SubtleFillColorSecondaryBrush}"
-                                VerticalAlignment="Center">
-                            <FontIcon Glyph="&#xE8C9;" FontSize="20" 
-                                      Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
-                            <TextBlock Text="Confirmation Dialogs" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                            <TextBlock Text="Show confirmation before executing power actions" 
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                       Opacity="0.8"/>
-                        </StackPanel>
-                        
-                        <ToggleSwitch x:Name="ConfirmToggle" 
-                                      Grid.Column="2" 
-                                      IsOn="True"
-                                      OnContent="" OffContent=""
-                                      VerticalAlignment="Center"/>
-                    </Grid>
-                </Border>
-
-                <Border Style="{StaticResource ElevatedCardStyle}" Padding="20">
-                    <Grid ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <Border Width="44" Height="44" CornerRadius="22" 
-                                Background="{ThemeResource SubtleFillColorSecondaryBrush}"
-                                VerticalAlignment="Center">
-                            <FontIcon Glyph="&#xE74D;" FontSize="20" 
-                                      Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
-                            <TextBlock Text="Force Close Applications" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                            <TextBlock Text="Force close applications on shutdown/restart" 
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                       Opacity="0.8"/>
-                        </StackPanel>
-                        
-                        <ToggleSwitch x:Name="ForceToggle" 
-                                      Grid.Column="2" 
-                                      IsOn="True"
-                                      OnContent="" OffContent=""
-                                      VerticalAlignment="Center"/>
-                    </Grid>
-                </Border>
-
-                <!-- About Section -->
-                <TextBlock Text="About" 
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Margin="0,28,0,12"
-                           Opacity="0.7"/>
-
-                <Border Style="{StaticResource FeatureCardStyle}">
-                    <StackPanel Spacing="20">
-                        <Grid ColumnSpacing="20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Border Width="80" Height="80" CornerRadius="16" 
-                                    Background="{ThemeResource AccentFillColorDefaultBrush}">
-                                <FontIcon Glyph="&#xE7E8;" FontSize="36" Foreground="White"
-                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="4">
-                                <TextBlock Text="reShut" Style="{StaticResource TitleTextBlockStyle}" FontWeight="SemiBold"/>
-                                <Border Style="{StaticResource StatusBadgeStyle}" HorizontalAlignment="Left">
-                                    <TextBlock x:Name="VersionText" 
-                                               Text="Version 1.0.0" 
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <FontIcon Glyph="&#xE790;" FontSize="20" 
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,16,0"/>
+                                
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Theme" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                    <TextBlock Text="Choose your preferred color scheme" 
                                                Style="{StaticResource CaptionTextBlockStyle}"
                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                                </Border>
+                                </StackPanel>
+                                
+                                <ComboBox x:Name="ThemeSelector" 
+                                          Grid.Column="2" 
+                                          Width="150"
+                                          VerticalAlignment="Center"
+                                          SelectionChanged="ThemeComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="System" Tag="Default"/>
+                                    <ComboBoxItem Content="Light" Tag="Light"/>
+                                    <ComboBoxItem Content="Dark" Tag="Dark"/>
+                                </ComboBox>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    
+                    <!-- Behavior Section -->
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="BEHAVIOR" 
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   FontWeight="SemiBold"
+                                   CharacterSpacing="60"/>
+                        
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8">
+                            <StackPanel>
+                                <!-- Confirmation Dialogs -->
+                                <Grid Padding="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <FontIcon Glyph="&#xE8BD;" FontSize="20" 
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,16,0"/>
+                                    
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Confirmation dialogs" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                        <TextBlock Text="Ask before executing power actions" 
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                    
+                                    <ToggleSwitch x:Name="ConfirmToggle" 
+                                                  Grid.Column="2" 
+                                                  IsOn="True"
+                                                  OnContent="" OffContent=""
+                                                  VerticalAlignment="Center"
+                                                  Toggled="ConfirmToggle_Toggled"/>
+                                </Grid>
+                                
+                                <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+                                
+                                <!-- Force Close -->
+                                <Grid Padding="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <FontIcon Glyph="&#xE711;" FontSize="20" 
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,16,0"/>
+                                    
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Force close apps" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                        <TextBlock Text="Close all applications without saving" 
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                    
+                                    <ToggleSwitch x:Name="ForceToggle" 
+                                                  Grid.Column="2" 
+                                                  IsOn="True"
+                                                  OnContent="" OffContent=""
+                                                  VerticalAlignment="Center"
+                                                  Toggled="ForceToggle_Toggled"/>
+                                </Grid>
                             </StackPanel>
-                        </Grid>
+                        </Border>
+                    </StackPanel>
+                    
+                    <!-- Updates Section -->
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="UPDATES" 
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   FontWeight="SemiBold"
+                                   CharacterSpacing="60"/>
                         
-                        <TextBlock Text="An easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on Windows computers." 
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   TextWrapping="Wrap"
-                                   Opacity="0.9"/>
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel Spacing="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <FontIcon Glyph="&#xE896;" FontSize="20" 
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,16,0"/>
+                                    
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Check for updates" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                        <TextBlock Text="Keep reShut up to date" 
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                    
+                                    <Button x:Name="UpdateButton" 
+                                            Grid.Column="2"
+                                            Style="{StaticResource AccentButtonStyle}"
+                                            CornerRadius="6"
+                                            Click="UpdateButton_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <FontIcon x:Name="UpdateIcon" Glyph="&#xE895;" FontSize="14"/>
+                                            <TextBlock x:Name="UpdateButtonText" Text="Check now"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                                
+                                <InfoBar x:Name="UpdateInfoBar"
+                                         IsOpen="False"
+                                         IsClosable="True"
+                                         CornerRadius="6"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Right Column - About Card -->
+                <Border Grid.Column="1" 
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="24"
+                        Width="280"
+                        VerticalAlignment="Top">
+                    <StackPanel Spacing="20">
+                        <!-- App Icon -->
+                        <Border Width="64" Height="64" CornerRadius="12" 
+                                Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE7E8;" FontSize="28" Foreground="White"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
                         
-                        <!-- Update Status InfoBar -->
-                        <InfoBar x:Name="UpdateInfoBar"
-                                 IsOpen="False"
-                                 IsClosable="True"
-                                 CornerRadius="8"/>
-                        
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <Button x:Name="GitHubButton" 
-                                    Style="{StaticResource PillButtonStyle}"
-                                    Click="GitHubButton_Click">
-                                <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <FontIcon Glyph="&#xE8A7;" FontSize="14"/>
-                                    <TextBlock Text="View on GitHub"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="UpdateButton" 
-                                    Style="{StaticResource SubtleButtonStyle}"
-                                    Click="UpdateButton_Click">
-                                <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <FontIcon x:Name="UpdateIcon" Glyph="&#xE946;" FontSize="14"/>
-                                    <TextBlock x:Name="UpdateButtonText" Text="Check for Updates"/>
-                                </StackPanel>
-                            </Button>
+                        <!-- App Info -->
+                        <StackPanel Spacing="4" HorizontalAlignment="Center">
+                            <TextBlock Text="reShut" 
+                                       Style="{StaticResource SubtitleTextBlockStyle}" 
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="VersionText" 
+                                       Text="Version 1.0.0" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
+                        
+                        <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+                        
+                        <!-- Developer Info -->
+                        <StackPanel Spacing="12" HorizontalAlignment="Center">
+                            <Grid Width="48" Height="48" HorizontalAlignment="Center">
+                                <Image x:Name="LogoLight" 
+                                       Source="/Assets/eN-Black.png" 
+                                       Width="48" Height="48"/>
+                                <Image x:Name="LogoDark" 
+                                       Source="/Assets/eN-White.png" 
+                                       Width="48" Height="48"
+                                       Visibility="Collapsed"/>
+                            </Grid>
+                            <StackPanel Spacing="2" HorizontalAlignment="Center">
+                                <TextBlock Text="elNino0916" 
+                                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                                           HorizontalAlignment="Center"/>
+                                <TextBlock Text="© 2025-2026" 
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+                        
+                        <!-- Links -->
+                        <Button x:Name="GitHubButton" 
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                CornerRadius="6"
+                                Click="GitHubButton_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon Glyph="&#xE8A7;" FontSize="16"/>
+                                <TextBlock Text="View on GitHub"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </Border>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

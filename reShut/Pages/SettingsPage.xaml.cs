@@ -8,27 +8,67 @@ namespace reShut.Pages;
 
 public sealed partial class SettingsPage : Page
 {
+    private bool _isInitializing = true;
+
     public SettingsPage()
     {
         InitializeComponent();
         LoadSettings();
+        
+        // Subscribe to theme changes for logo switching
+        ActualThemeChanged += SettingsPage_ActualThemeChanged;
+        UpdateLogoForTheme();
+        
+        _isInitializing = false;
+    }
+
+    private void SettingsPage_ActualThemeChanged(FrameworkElement sender, object args)
+    {
+        UpdateLogoForTheme();
+    }
+
+    private void UpdateLogoForTheme()
+    {
+        // ActualTheme gives us the real current theme (Light or Dark), 
+        // even when RequestedTheme is Default
+        bool isDark = ActualTheme == ElementTheme.Dark;
+
+        // Dark theme = show white logo, Light theme = show black logo
+        LogoDark.Visibility = isDark ? Visibility.Collapsed : Visibility.Visible;
+        LogoLight.Visibility = isDark ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void LoadSettings()
     {
-        // Default to system theme
-        ThemeSelector.SelectedIndex = 0;
-        
+        // Load theme from saved settings
+        string savedTheme = SettingsService.Theme;
+        ThemeSelector.SelectedIndex = savedTheme switch
+        {
+            "Light" => 1,
+            "Dark" => 2,
+            _ => 0 // Default
+        };
+
+        // Load other settings
+        ConfirmToggle.IsOn = SettingsService.ConfirmationDialogsEnabled;
+        ForceToggle.IsOn = SettingsService.ForceCloseApps;
+
         // Set version text from global AppInfo
         VersionText.Text = $"Version {AppInfo.Version}";
     }
 
     private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (_isInitializing) return;
+
         if (ThemeSelector.SelectedItem is ComboBoxItem selectedItem)
         {
-            string? themeTag = selectedItem.Tag?.ToString();
-            
+            string? themeTag = selectedItem.Tag?.ToString() ?? "Default";
+
+            // Save the setting
+            SettingsService.Theme = themeTag;
+
+            // Apply the theme
             if (App.MainWindow?.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = themeTag switch
@@ -39,6 +79,18 @@ public sealed partial class SettingsPage : Page
                 };
             }
         }
+    }
+
+    private void ConfirmToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_isInitializing) return;
+        SettingsService.ConfirmationDialogsEnabled = ConfirmToggle.IsOn;
+    }
+
+    private void ForceToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_isInitializing) return;
+        SettingsService.ForceCloseApps = ForceToggle.IsOn;
     }
 
     private async void GitHubButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +117,7 @@ public sealed partial class SettingsPage : Page
                     UpdateInfoBar.Message = $"Version {result.LatestVersion} is available. You are currently on version {AppInfo.Version}.";
                     UpdateInfoBar.Severity = InfoBarSeverity.Success;
                     UpdateInfoBar.IsOpen = true;
-                    
+
                     // Add action button to open release page
                     UpdateInfoBar.ActionButton = new HyperlinkButton
                     {
