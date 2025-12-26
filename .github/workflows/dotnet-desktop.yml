@@ -46,6 +46,7 @@ jobs:
         msbuild $env:App_Project_Path `
           /restore `
           /p:Configuration=${{ matrix.configuration }} `
+          /p:Platform=x64 `
           /p:GenerateAppxPackageOnBuild=true `
           /p:AppxBundle=Always `
           /p:AppxBundlePlatforms="x86|x64" `
