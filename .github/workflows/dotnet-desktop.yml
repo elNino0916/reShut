@@ -1,4 +1,4 @@
-name: .NET Core Desktop
+name: Build MSIXBUNDLE
 
 on:
   push:
@@ -8,88 +8,76 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-
     runs-on: windows-latest
 
+    strategy:
+      matrix:
+        configuration: [Release]
+
     env:
-      Solution_Name: reShut.slnx
-      Test_Project_Path: reShut/reShut.csproj
-
-      # Directory that contains your .wapproj (packaging project)
-      Wap_Project_Directory: reShut
-
-      # Optional: if you want to force a specific RID later
-      # RID: win-x64
+      App_Project_Path: reShut/reShut.csproj
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
-    # Pin to a concrete .NET 8 SDK so you don't accidentally build with a newer SDK on the runner.
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.416
+        dotnet-version: 8.0.x
 
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    - name: Execute unit tests
-      run: dotnet test
+    - name: Restore
+      run: dotnet restore
 
-    # Restore (use msbuild restore to match your later msbuild packaging)
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    # Auto-detect the WAP (.wapproj) file so Wap_Project_Path is always valid
-    - name: Locate packaging project (.wapproj)
+    - name: Decode signing certificate (PFX)
       shell: pwsh
       run: |
-        $wap = Get-ChildItem -Path $env:Wap_Project_Directory -Recurse -Filter *.wapproj | Select-Object -First 1
-        if (-not $wap) { throw "No .wapproj found under '$($env:Wap_Project_Directory)'. Fix Wap_Project_Directory or add a packaging project." }
-        "Wap_Project_Path=$($wap.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append
+        $pfxBytes = [Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+        $pfxPath  = Join-Path $env:GITHUB_WORKSPACE "GitHubActionsWorkflow.pfx"
+        [IO.File]::WriteAllBytes($pfxPath, $pfxBytes)
+        "PfxPath=$pfxPath" | Out-File -FilePath $env:GITHUB_ENV -Append
 
-    - name: Decode the pfx
+    - name: Build + Pack (MSIXBUNDLE)
       shell: pwsh
       run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
-
-    # Build + package MSIX
-    - name: Create the app package
-      shell: pwsh
-      run: |
-        msbuild "$env:Wap_Project_Path" `
-          /p:Configuration=$env:Configuration `
-          /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode `
-          /p:AppxBundle=$env:Appx_Bundle `
-          /p:AppxBundlePlatforms=$env:Appx_Bundle_Platforms `
-          /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx `
+        msbuild $env:App_Project_Path `
+          /restore `
+          /p:Configuration=${{ matrix.configuration }} `
+          /p:GenerateAppxPackageOnBuild=true `
+          /p:AppxBundle=Always `
+          /p:AppxBundlePlatforms="x86|x64" `
+          /p:UapAppxPackageBuildMode=StoreUpload `
+          /p:AppxPackageSigningEnabled=true `
+          /p:PackageCertificateKeyFile="$env:PfxPath" `
           /p:PackageCertificatePassword="${{ secrets.Pfx_Key }}" `
           /p:PublishProfile= `
           /p:PublishTrimmed=false `
           /p:TrimMode=none `
           /p:EnableTrimAnalyzer=false
-      env:
-        Appx_Bundle: Always
-        Appx_Bundle_Platforms: x86|x64
-        Appx_Package_Build_Mode: StoreUpload
-        Configuration: ${{ matrix.configuration }}
 
-    - name: Remove the pfx
+    # Export a .cer alongside the package (similar to what VS drops next to the bundle)
+    - name: Export CER from PFX
       shell: pwsh
-      run: Remove-Item -Force -ErrorAction SilentlyContinue -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+      run: |
+        $pwd = ConvertTo-SecureString "${{ secrets.Pfx_Key }}" -AsPlainText -Force
+        $pfx = Import-PfxCertificate -FilePath "$env:PfxPath" -CertStoreLocation Cert:\CurrentUser\My -Password $pwd
 
-    - name: Upload build artifacts
+        $cerPath = Join-Path $env:GITHUB_WORKSPACE "GitHubActionsWorkflow.cer"
+        Export-Certificate -Cert $pfx -FilePath $cerPath | Out-Null
+
+        "CerPath=$cerPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+    - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: MSIX Package (${{ matrix.configuration }})
-        path: ${{ env.Wap_Project_Directory }}\AppPackages
+        name: msixbundle
+        path: |
+          **\AppPackages\**\*.msixbundle
+          GitHubActionsWorkflow.cer
+
+    - name: Cleanup PFX
+      shell: pwsh
+      run: Remove-Item -Force -ErrorAction SilentlyContinue "$env:PfxPath"
