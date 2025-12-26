@@ -57,6 +57,9 @@ jobs:
           /p:PublishTrimmed=false `
           /p:TrimMode=none `
           /p:EnableTrimAnalyzer=false
+          /p:RuntimeIdentifiers="win-x86;win-x64" `
+          /p:PublishReadyToRun=true
+
 
     # Export a .cer alongside the package (similar to what VS drops next to the bundle)
     - name: Export CER from PFX
